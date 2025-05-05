@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>Intrusion Detection System</title>
+  {% load static %}
+  </head>
+
+  <nav class="navbar navbar-dark bg-dark justify-content-center">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        Intrusion Detection System
+      </a>
+    </div>
+      </nav>
+
+  {% load static %}
+  <body background="{% static 'myapp/back.jpg' %}" style="background-size: cover;background-repeat: no-repeat;background-attachment: fixed;">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <br>
+
+<section>
+  <div class="row justify-content-center">
+    <div class="col-md-6 mb-4">
+      <div class="card mb-4">
+        <div class="card-header py-3">
+          <h5 class="mb-0">Provide Details for Detection</h5>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="root_shell" class="form-control" placeholder="root_shell" required/>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="su_attempted" class="form-control" placeholder="su_attempted" required/>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="num_file_creations" class="form-control" placeholder="num_file_creations" required/>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="num_shells" class="form-control" placeholder="num_shells" required/>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="num_access_files" class="form-control" placeholder="num_access_files" required/>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="is_guest_login" class="form-control" placeholder="is_guest_login" required/>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="count" class="form-control" placeholder="count" required/>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="srv_count" class="form-control" placeholder="srv_count" required/>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="serror_rate" class="form-control" placeholder="serror_rate" required/>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="rerror_rate" class="form-control" placeholder="rerror_rate" required/>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="same_srv_rate" class="form-control" placeholder="same_srv_rate" required/>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" name="diff_srv_rate" class="form-control" placeholder="diff_srv_rate" required/>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn bg-dark text-white btn-lg px-5" name="next2" type="submit">Next</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+
+  </body>
+
+<script type="text/javascript">
+
+  {% if Flag %}
+      swal({
+        text: "{{ mymessage }}",
+      })
+      .then((homemessage) => {
+        if(homemessage)
+        {
+          {% if Navigate %}
+            window.location.href = "/";
+        {% endif %}
+        }
+      });
+  {% else %}
+      None
+  {% endif %}
+
+
+</script>
+
+</html>

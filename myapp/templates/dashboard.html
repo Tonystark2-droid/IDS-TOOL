@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>Intrusion Detection System</title>
+  {% load static %}
+  </head>
+
+  <nav class="navbar navbar-dark bg-dark justify-content-center">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        Intrusion Detection System
+      </a>
+    </div>
+      </nav>
+
+  {% load static %}
+  <body background="" style="background-size: cover;background-repeat: no-repeat;background-attachment: fixed;">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <div style="text-align:center;margin-top:50px;"><img src="{% static 'myapp/output2.png' %}" alt="S" width="100" height="100"></div><br>
+    <div content="column">
+	      <p style="text-align:center;font-size:30px;">
+	         Data Insights
+	        <img src="{% static 'myapp/insights.png' %}" alt="S" width="32" height="32"><p>
+	      </p>
+	  </div>
+
+
+	<div class="row row-cols-1 row-cols-md-2 g-4 text-center" style="padding:50px;">
+  <div class="col">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <h2 class="card-title">Protocol Type</h2>
+        <img src="{% static 'myapp/protocol_type.png' %}" alt="S" width="360" height="256">
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <h2 class="card-title">Attack Type</h2>
+        <img src="{% static 'myapp/attack_type.png' %}" alt="S" width="360" height="256">
+      </div>
+    </div>
+  </div>
+  
+    <div class="col">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <h2 class="card-title">Attack Type Count</h2>
+          <p class="card-text">
+          <br><br><br>
+
+            <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">dos</th>
+              <th scope="col">normal</th>
+              <th scope="col">probe</th>
+              <th scope="col">r2l</th>
+              <th scope="col">u2r</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Count</th>
+              <td>{{dos}}</td>
+              <td>{{normal}}</td>
+              <td>{{probe}}</td>
+              <td>{{r2l}}</td>
+              <td>{{u2r}}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+          <br><br><br>
+
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <h2 class="card-title">Model Training & Testing Score</h2>
+          <p class="card-text">
+          <br><br><br>
+
+            <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Training</th>
+              <th scope="col">Testing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Score</th>
+              <td>{{0.99996}}</td>
+              <td>{{0.98966}}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+          <br><br><br>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="text-align:center;margin-top:10px;"> 
+<form method="POST">
+	{% csrf_token %}
+	<button class="btn btn-dark px-5 btn-lg justify-content-center" style="justify-content: center;" type="submit">Start Detection</button>
+</form>
+</div>
+<br>
+<br>
+   
+  </body>
+
+<script type="text/javascript">
+
+  {% if Flag %}
+      swal({
+        text: "{{ mymessage }}",
+      })
+      .then((homemessage) => {
+        if(homemessage)
+        {
+          {% if Navigate %}
+            window.location.href = "/";
+        {% endif %}
+        }
+      });
+  {% else %}
+      None
+  {% endif %}
+
+
+</script>
+
+</html>
